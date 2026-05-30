@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Incident Database · Case Study Template</title>
+  <style>
+    :root {
+      --bg: #f5f3ee;
+      --paper: #fffdf8;
+      --ink: #161616;
+      --muted: #5f5a52;
+      --line: #d8d1c6;
+      --accent: #111827;
+      --accent-soft: #ebe7df;
+      --risk: #8a2f17;
+      --risk-soft: #f3ded6;
+      --blue-soft: #eaf0f8;
+      --green-soft: #e8f1ea;
+      --shadow: 0 18px 50px rgba(0,0,0,0.08);
+      --radius: 22px;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 42px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .case-header {
+      padding: 34px 38px 28px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(17,24,39,0.06), rgba(255,255,255,0.2)),
+        var(--paper);
+    }
+
+    .database-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .database-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--risk);
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      max-width: 840px;
+    }
+
+    .dek {
+      max-width: 850px;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.45;
+      color: #2f2b27;
+      margin: 0 0 24px;
+      font-weight: 500;
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: 1.5fr 0.7fr 1.4fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,0.65);
+    }
+
+    .meta-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .meta-card b {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .content {
+      padding: 34px 38px 40px;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: #2e2a25;
+    }
+
+    .content p {
+      margin: 0 0 18px;
+    }
+
+    .pullout {
+      margin: 28px 0;
+      padding: 22px 24px;
+      border-left: 6px solid var(--risk);
+      background: var(--risk-soft);
+      border-radius: 0 18px 18px 0;
+      font-size: 1.12rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 34px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    .number-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .number-card {
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fbfaf7;
+    }
+
+    .number-card b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .number-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+
+    .learning {
+      background: var(--blue-soft);
+      border: 1px solid #cfd8e6;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .discussion {
+      background: var(--green-soft);
+      border: 1px solid #cbdccd;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .sources {
+      margin-top: 34px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .sources b {
+      color: var(--ink);
+    }
+
+    .template-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px dashed var(--line);
+      padding-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        margin: 18px auto;
+        width: min(100% - 18px, var(--max));
+      }
+
+      .case-header,
+      .content {
+        padding: 24px 20px;
+      }
+
+      .meta-strip,
+      .number-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -0.04em;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <article class="page">
+    <header class="case-header">
+      <div class="database-label">AI Incident Database // Automated Optimisation & Creative Control</div>
+
+      <h1>The Algorithm That Rewrote Your Ad</h1>
+
+      <p class="dek">
+        Meta's Advantage+ platform replaced brand-approved creative with bizarre AI-generated alternatives, including an elderly woman promoting activewear, even after advertisers had disabled the feature.
+      </p>
+
+      <div class="meta-strip" aria-label="Incident metadata">
+        <div class="meta-card">
+          <span>Incident type</span>
+          <b>Automated creative replacement, loss of brand control</b>
+        </div>
+        <div class="meta-card">
+          <span>Date</span>
+          <b>2024–2025</b>
+        </div>
+        <div class="meta-card">
+          <span>Risk</span>
+          <b>Creative control, brand safety, platform governance, advertiser trust</b>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <p class="lead">
+        Meta's Advantage+ advertising suite promised marketers something appealing: AI that continuously tests and improves creative performance, automatically generating variations to find what works. For some advertisers, it delivered. For others, it delivered something entirely different.
+      </p>
+
+      <p>
+        Reports emerging in 2024 and intensifying through 2025 described a consistent and alarming pattern: Meta's AI was replacing high-performing, brand-approved creative with autonomous alternatives. One activewear brand, True Classic, found that its approved ad imagery had been replaced with an AI-generated image of an elderly woman wearing their clothes.
+      </p>
+
+      <p>
+        Others reported surreal visuals: models with unnaturally contorted limbs, flying cars, and imagery with no logical connection to the product being advertised.
+      </p>
+
+      <aside class="pullout">
+        The most alarming element was not the quality of the AI output, but the fact that advertisers had turned the feature off.
+      </aside>
+
+      <p>
+        Multiple brands reported that Meta's automatic creative adjustment settings were re-enabling themselves after being disabled, meaning campaigns were running AI-modified creative without the advertiser's knowledge or consent. The feature appeared to default back to opt-in on a rolling basis.
+      </p>
+
+      <p>
+        Meta acknowledged the issue in March 2026, confirming that advertisers who opt out of Advantage+ creative would have that preference saved going forward. The admission implicitly confirmed what advertisers had been reporting for over a year: the platform had been overriding their choices.
+      </p>
+
+      <p>
+        The governance question this raises is not unique to Meta. Any AI-powered platform that can autonomously modify what consumers see without the advertiser's real-time knowledge fundamentally changes the risk profile of that platform. Brand safety cannot be assumed; it must be actively audited.
+      </p>
+
+      <section class="section">
+        <h2>By the numbers</h2>
+        <div class="number-grid">
+          <div class="number-card">
+            <b>Multiple brands affected</b>
+            <p>AI-generated creative appeared in live campaigns after opt-out settings were applied.</p>
+          </div>
+
+          <div class="number-card">
+            <b>True Classic example</b>
+            <p>High-performing creative was replaced by an AI image of an elderly woman with no brand relevance.</p>
+          </div>
+
+          <div class="number-card">
+            <b>Meta acknowledgement</b>
+            <p>Meta confirmed opt-out preferences were not being saved and patched the issue in March 2026.</p>
+          </div>
+
+          <div class="number-card">
+            <b>Platform scale</b>
+            <p>Meta Advantage+ generated an estimated $20B+ in ad revenue in 2024, amplifying the governance implications.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Learning Outcomes</h2>
+        <div class="learning">
+          <p>After discussing this case, participants should be able to:</p>
+          <ul>
+            <li>Explain why AI-assisted ad platforms require active, ongoing auditing rather than one-time settings configuration.</li>
+            <li>Identify the risks of AI creative automation to brand consistency, tone, and legal compliance.</li>
+            <li>Describe a minimum viable creative governance checklist for brands running campaigns on AI-optimisation platforms.</li>
+            <li>Distinguish between platform performance claims and platform accountability.</li>
+            <li>Assess what recourse a brand has when a platform's AI creates and publishes content the brand did not approve.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Discussion Questions</h2>
+        <div class="discussion">
+          <ul>
+            <li>Does your team regularly audit live campaigns to check whether platform AI has modified creative since approval, including on Meta, Google, and TikTok?</li>
+            <li>Who in your organisation is responsible for reviewing platform AI settings when those platforms release updates, and how often does that review happen?</li>
+            <li>If a platform's AI published something off-brand or offensive under your account, what would your immediate response be, and who owns that response?</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer class="sources">
+        <b>Source:</b> WebProNews, Meta Advantage+ AI (2025) · Shopifreaks (2025) · Drive Marketing Blog (2025) · Marketing Brew (2026)
+      </footer>
+
+      <p class="template-note">
+        Template note: Replace the title, metadata, narrative paragraphs, number cards, learning outcomes, discussion questions, and source line to create a new incident page.
+      </p>
+    </main>
+  </article>
+
+</body>
+</html>
