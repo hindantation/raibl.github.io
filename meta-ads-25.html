@@ -25,6 +25,42 @@
 
     * { box-sizing: border-box; }
 
+    .site-header {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 24px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid rgba(216,209,198,0.9);
+      border-radius: 16px;
+      background: rgba(255,253,248,0.9);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .site-brand {
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-brand:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .site-section {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
     body {
       margin: 0;
       background:
@@ -239,6 +275,14 @@
     }
 
     @media (max-width: 760px) {
+      .site-header {
+        width: min(100% - 18px, var(--max));
+        margin-top: 10px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+      }
+
       .page {
         margin: 18px auto;
         width: min(100% - 18px, var(--max));
@@ -271,6 +315,10 @@
   </style>
 </head>
 <body>
+<header class="site-header">
+<a class="site-brand" href="https://aimsproject.net/" rel="home">AIMS project</a>
+<div class="site-section">AI Incidents in Marketing</div>
+</header>
 <article class="page">
 <header class="case-header">
 <div class="database-label">AI Incident Database // Algorithmic Targeting &amp; Discrimination</div>
