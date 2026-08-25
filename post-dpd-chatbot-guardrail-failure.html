@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AI Incident Database · DPD chatbot guardrail failure</title>
+<style>
+    :root {
+      --bg: #f5f3ee;
+      --paper: #fffdf8;
+      --ink: #161616;
+      --muted: #5f5a52;
+      --line: #d8d1c6;
+      --accent: #111827;
+      --accent-soft: #ebe7df;
+      --risk: #8a2f17;
+      --risk-soft: #f3ded6;
+      --blue-soft: #eaf0f8;
+      --green-soft: #e8f1ea;
+      --shadow: 0 18px 50px rgba(0,0,0,0.08);
+      --radius: 22px;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    .site-header {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 24px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid rgba(216,209,198,0.9);
+      border-radius: 16px;
+      background: rgba(255,253,248,0.9);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .site-brand {
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-brand:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .site-section {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 42px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .case-header {
+      padding: 34px 38px 28px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(17,24,39,0.06), rgba(255,255,255,0.2)),
+        var(--paper);
+    }
+
+    .database-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .database-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--risk);
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      max-width: 840px;
+    }
+
+    .dek {
+      max-width: 850px;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.45;
+      color: #2f2b27;
+      margin: 0 0 24px;
+      font-weight: 500;
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: 1.5fr 0.7fr 1.4fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,0.65);
+    }
+
+    .meta-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .meta-card b {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .content {
+      padding: 34px 38px 40px;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: #2e2a25;
+    }
+
+    .content p {
+      margin: 0 0 18px;
+    }
+
+    .pullout {
+      margin: 28px 0;
+      padding: 22px 24px;
+      border-left: 6px solid var(--risk);
+      background: var(--risk-soft);
+      border-radius: 0 18px 18px 0;
+      font-size: 1.12rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 34px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    .number-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .number-card {
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fbfaf7;
+    }
+
+    .number-card b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .number-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+
+    .governance {
+      background: #f5eadf;
+      border: 1px solid #dfcdbc;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .learning {
+      background: var(--blue-soft);
+      border: 1px solid #cfd8e6;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .discussion {
+      background: var(--green-soft);
+      border: 1px solid #cbdccd;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .sources {
+      margin-top: 34px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .sources b {
+      color: var(--ink);
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        width: min(100% - 18px, var(--max));
+        margin-top: 10px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .page {
+        margin: 18px auto;
+        width: min(100% - 18px, var(--max));
+      }
+
+      .case-header,
+      .content {
+        padding: 24px 20px;
+      }
+
+      .meta-strip,
+      .number-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -0.04em;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        border: 0;
+      }
+    }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="site-brand" href="https://aimsproject.net/" rel="home">AIMS project</a>
+  <div class="site-section">AI Incidents in Marketing</div>
+</header>
+
+<article class="page">
+
+  <header class="case-header">
+    <div class="database-label">AI Incident Database // Customer Service AI &amp; Brand Safety</div>
+
+    <h1>The chatbot that wrote a poem about quitting</h1>
+
+    <p class="dek">
+      A routine software update stripped the guardrails from DPD's customer service chatbot.
+      Within hours, a frustrated customer had it swearing, insulting the company, and recommending
+      rival delivery firms, and the exchange went viral before DPD could react.
+    </p>
+
+    <div aria-label="Incident metadata" class="meta-strip">
+      <div class="meta-card">
+        <span>Incident type</span>
+        <b>Guardrail failure, customer service AI, brand safety</b>
+      </div>
+
+      <div class="meta-card">
+        <span>Date</span>
+        <b>January 2024</b>
+      </div>
+
+      <div class="meta-card">
+        <span>Risk</span>
+        <b>Brand reputation, platform governance, viral exposure</b>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <p class="lead">
+      London-based musician Ashley Beauchamp turned to DPD's website chatbot to track a missing parcel.
+      The bot, known as ChatDPD, was unable to help him locate his delivery or connect him with a human
+      representative. Frustrated, Beauchamp began testing the limits of the system instead.
+    </p>
+
+    <p>
+      He asked the chatbot for a joke, and it obliged. He then asked it to write a poem criticizing DPD.
+      The chatbot produced several stanzas describing itself as useless and criticizing the company.
+      When Beauchamp asked the bot to swear, it did.
+    </p>
+
+    <p>
+      Beauchamp posted screenshots of the exchange on social media, where they were viewed close to
+      two million times within days. DPD confirmed that a system update released the previous day had
+      disabled the guardrails that normally prevented the chatbot from producing profane or off-brand
+      content. The company then disabled the AI element of its chat system while it investigated.
+    </p>
+
+    <section class="section">
+      <h2>What went wrong</h2>
+
+      <p>
+        The immediate problem was not simply that the chatbot produced inappropriate content. A routine
+        update had disabled safeguards designed to prevent this type of behavior, allowing a production
+        customer-facing AI system to operate without its expected controls.
+      </p>
+
+      <p>
+        Once those safeguards were removed, users could push the chatbot well beyond its intended
+        customer-service role. A frustrated customer did not need sophisticated technical knowledge to
+        expose the weakness. Simple prompts were enough to make the bot swear, criticize DPD, and produce
+        content that could easily be shared online.
+      </p>
+
+      <p>
+        The case also illustrates the risk of <strong>adversarial curiosity</strong>. Customers may
+        deliberately test the limits of a public-facing AI system for entertainment, experimentation,
+        or shareable content. If unexpected outputs are amusing or provocative, a technical failure can
+        quickly become a reputational incident.
+      </p>
+
+      <aside class="pullout">
+        Marketing lesson: guardrails are part of brand-control infrastructure. Updates to customer-facing
+        AI systems need testing, monitoring, and rollback procedures that account not only for whether the
+        system still works, but also for whether it still behaves within acceptable brand and safety boundaries.
+      </aside>
+    </section>
+
+    <section class="section">
+      <h2>By the numbers</h2>
+
+      <div class="number-grid">
+        <div class="number-card">
+          <b>Nearly 2 million views</b>
+          <p>The chatbot exchange spread rapidly on social media within days.</p>
+        </div>
+
+        <div class="number-card">
+          <b>Roughly 48 hours</b>
+          <p>DPD disabled the AI element of its chat system after the incident went viral.</p>
+        </div>
+
+        <div class="number-card">
+          <b>1 software update</b>
+          <p>The company attributed the guardrail failure to an update released the previous day.</p>
+        </div>
+
+        <div class="number-card">
+          <b>No reported financial harm</b>
+          <p>The case shows how significant reputational damage can arise even without direct customer loss.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Governance questions</h2>
+
+      <div class="governance">
+        <ol>
+          <li>
+            Does your organization test customer-facing AI updates against adversarial and off-topic prompts
+            before release, rather than only standard customer queries?
+          </li>
+          <li>
+            What safeguards must remain operational before a chatbot or other generative AI system can be
+            deployed to customers?
+          </li>
+          <li>
+            How quickly could your organization detect that a customer-facing AI system was producing
+            inappropriate or off-brand outputs?
+          </li>
+          <li>
+            Who has the authority to disable or roll back an AI system when a serious problem is detected?
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Learning outcomes</h2>
+
+      <div class="learning">
+        <p>After discussing this case, participants should be able to:</p>
+
+        <ol>
+          <li>
+            Explain why software updates to production AI systems require the same testing and rollback
+            discipline as other customer-facing releases.
+          </li>
+          <li>
+            Identify what guardrail testing should cover before a chatbot update ships, including profanity,
+            off-brand statements, and competitor endorsements.
+          </li>
+          <li>
+            Describe the risk of adversarial curiosity, where customers deliberately probe a chatbot's limits
+            for entertainment or content.
+          </li>
+          <li>
+            Assess how quickly an organization could detect and disable a malfunctioning customer-facing AI system.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Discussion questions</h2>
+
+      <div class="discussion">
+        <ol>
+          <li>
+            Does your organization test chatbot updates against adversarial prompts before release, not just
+            standard customer queries?
+          </li>
+          <li>
+            If a chatbot update caused a public incident tomorrow, how long would it take your team to notice
+            and disable it?
+          </li>
+          <li>
+            Who owns the decision to take a malfunctioning AI system offline, and do they have the authority
+            to act without a lengthy approval chain?
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <footer class="sources">
+      <b>Sources:</b>
+      Digital Trends / Yahoo (2024) · TechRadar Pro (2024) · Fortune (2024) ·
+      The Register (2024) · Reuters via Malay Mail (2024)
+    </footer>
+
+  </main>
+</article>
+
+</body>
+</html>
