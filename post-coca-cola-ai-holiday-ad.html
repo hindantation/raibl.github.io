@@ -1,78 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="A practical blog archive of AI incidents in marketing, advertising, brand communications, and customer engagement." />
-        <meta name="author" content="AI Incidents in Marketing" />
-        <title>Coca-Cola’s AI holiday advert backlash | AI incidents in marketing</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">AI Incidents in Marketing</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post-coca-cola-ai-holiday-ad.html">Featured Case</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Submit an Incident</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/post-bg.jpg')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="post-heading">
-                            <h1>Coca-Cola’s AI holiday advert backlash</h1>
-                            <h2 class="subheading">When a nostalgic brand world meets generative AI aesthetics</h2>
-                            <span class="meta">AI marketing incident case note, January 9, 2025</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Post Content-->
-        <article class="mb-4">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>Coca-Cola’s holiday advertising is built on memory, warmth, and visual continuity. That is why its AI-assisted holiday campaign became such a useful marketing incident to study. The controversy was not only about whether AI was used. It was about whether the creative output still carried the emotional cues that audiences associate with the brand.</p>
-                        <p>Reports and industry commentary described criticism around uncanny visuals, weak emotional depth, and visible generative AI artefacts. In a campaign tied to nostalgia, small creative failures become strategic failures because the audience is already comparing the work with a highly familiar brand tradition.</p>
-                        <h2 class="section-heading">What went wrong</h2>
-                        <p>The core issue was brand fit. AI may speed up production, but speed does not guarantee resonance. When viewers notice technical novelty before they feel the intended emotion, the campaign risks becoming a conversation about the production method rather than the brand message.</p>
-                        <blockquote class="blockquote">Marketing lesson: do not use AI to replace the emotional labour of brand storytelling in moments where authenticity is the product.</blockquote>
-                        <h2 class="section-heading">Governance questions</h2>
-                        <p>Before launch, the team could have asked: Does the AI-generated output preserve the brand’s memory structures? Have real audience panels tested the emotional response, not only the visual quality? Is the campaign transparent enough about AI use without making AI the centre of the story?</p>
-                        <p><strong>Source links:</strong> <a href="https://advertisingweek.com/a-very-ai-christmas-did-coca-colas-ad-lose-its-holiday-spirit/">Advertising Week</a>, <a href="https://www.nngroup.com/articles/ai-ad/">Nielsen Norman Group</a>, <a href="https://www.businessinsider.com/ai-advertising-controversies-flops-coca-cola-mcdonalds-meta-2025-12">Business Insider</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <!-- Footer-->
-        <footer class="border-top">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; AI Incidents in Marketing 2026</div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AI Incident Database · Coca-Cola's AI holiday advert backlash</title>
+<style>
+    :root {
+      --bg: #f5f3ee;
+      --paper: #fffdf8;
+      --ink: #161616;
+      --muted: #5f5a52;
+      --line: #d8d1c6;
+      --accent: #111827;
+      --accent-soft: #ebe7df;
+      --risk: #8a2f17;
+      --risk-soft: #f3ded6;
+      --blue-soft: #eaf0f8;
+      --green-soft: #e8f1ea;
+      --shadow: 0 18px 50px rgba(0,0,0,0.08);
+      --radius: 22px;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    .site-header {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 24px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid rgba(216,209,198,0.9);
+      border-radius: 16px;
+      background: rgba(255,253,248,0.9);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .site-brand {
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-brand:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .site-section {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 42px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .case-header {
+      padding: 34px 38px 28px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(17,24,39,0.06), rgba(255,255,255,0.2)),
+        var(--paper);
+    }
+
+    .database-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .database-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--risk);
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      max-width: 840px;
+    }
+
+    .dek {
+      max-width: 850px;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.45;
+      color: #2f2b27;
+      margin: 0 0 24px;
+      font-weight: 500;
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: 1.5fr 0.7fr 1.4fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,0.65);
+    }
+
+    .meta-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .meta-card b {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .content {
+      padding: 34px 38px 40px;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: #2e2a25;
+    }
+
+    .content p {
+      margin: 0 0 18px;
+    }
+
+    .pullout {
+      margin: 28px 0;
+      padding: 22px 24px;
+      border-left: 6px solid var(--risk);
+      background: var(--risk-soft);
+      border-radius: 0 18px 18px 0;
+      font-size: 1.12rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 34px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    .number-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .number-card {
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fbfaf7;
+    }
+
+    .number-card b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .number-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+
+
+    .governance {
+      background: #f5eadf;
+      border: 1px solid #dfcdbc;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .learning {
+      background: var(--blue-soft);
+      border: 1px solid #cfd8e6;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .discussion {
+      background: var(--green-soft);
+      border: 1px solid #cbdccd;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .sources {
+      margin-top: 34px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .sources b {
+      color: var(--ink);
+    }
+
+    .template-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px dashed var(--line);
+      padding-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        width: min(100% - 18px, var(--max));
+        margin-top: 10px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .page {
+        margin: 18px auto;
+        width: min(100% - 18px, var(--max));
+      }
+
+      .case-header,
+      .content {
+        padding: 24px 20px;
+      }
+
+      .meta-strip,
+      .number-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -0.04em;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+<a class="site-brand" href="https://aimsproject.net/" rel="home">AIMS project</a>
+<div class="site-section">AI Incidents in Marketing</div>
+</header>
+<article class="page">
+<header class="case-header">
+<div class="database-label">AI Incident Database // Generative AI &amp; Brand Authenticity</div>
+<h1>Coca-Cola's AI holiday advert backlash</h1>
+<p class="dek">Coca-Cola used generative AI to recreate its iconic Christmas advertising, triggering criticism over visual quality, authenticity, and whether AI was appropriate for a campaign built around nostalgia and emotional connection.</p>
+<div aria-label="Incident metadata" class="meta-strip">
+<div class="meta-card"><span>Incident type</span><b>Generative AI, synthetic advertising, AI-generated creative</b></div>
+<div class="meta-card"><span>Date</span><b>2024</b></div>
+<div class="meta-card"><span>Risk</span><b>Brand reputation, consumer trust, creative quality, brand authenticity</b></div>
+</div>
+</header>
+<main class="content">
+<p class="lead">In 2024, Coca-Cola released new versions of its famous <em>Holidays Are Coming</em> Christmas advertisement created with generative AI. The campaign revisited the familiar image of illuminated Coca-Cola trucks traveling through snowy landscapes, but this time much of the imagery was produced using AI.</p>
+<p>Coca-Cola worked with several production studios and generative AI tools to produce different versions of the advertisement. Human creative teams remained involved in selecting, refining, and assembling the generated material. The company presented the campaign as a way of combining its established holiday heritage with new creative technology.</p>
+<p>The advertisements nevertheless attracted substantial criticism online. Viewers pointed to unusual movements, inconsistent details, and imagery that some described as artificial or unsettling. Critics also questioned why a brand whose Christmas advertising relies heavily on warmth, nostalgia, and human connection had chosen generative AI for such an iconic campaign.</p>
+<section class="section">
+<h2>What went wrong</h2>
+<p>The issue was not simply that some AI-generated images contained visual imperfections. The campaign exposed a potential mismatch between the capabilities offered by the technology and the emotional purpose of the advertising.</p>
+<p>Generative AI can make it easier to produce many creative variations and can potentially reduce production time and costs. But these benefits do not automatically translate into a better advertising experience. In this case, audiences were comparing the new advertisements with decades of familiar Coca-Cola Christmas imagery. The way the advertisement was produced therefore became part of how the campaign itself was judged.</p>
+<p>This use case sends an important message to marketing specialists: evaluating generative AI should involve more than asking whether the technology can successfully produce an advertisement. Teams also need to consider whether its use is appropriate for the brand, audience, and emotional function of the campaign.</p>
+<aside class="pullout">Marketing lesson: technical feasibility and production efficiency are not sufficient reasons to use generative AI. Teams should also test whether the technology supports or undermines the emotional and symbolic value of the brand experience.</aside>
+</section>
+<section class="section">
+<h2>Governance questions</h2>
+<div class="governance"><ol>
+<li>Does your organisation assess whether generative AI is appropriate for a particular brand asset or campaign, rather than reviewing only the technical quality of the final content?</li>
+<li>When campaigns rely heavily on nostalgia, authenticity, or human connection, how does your organisation test whether AI-generated creative changes the audience's emotional response?</li>
+<li>What level of human creative review and audience testing should be required before AI-generated material involving important or iconic brand assets is released?</li>
+</ol></div>
+</section>
+<section class="section">
+<h2>Learning outcomes</h2>
+<div class="learning">
+<p>After discussing this case, participants should be able to:</p>
+<ol>
+<li>Explain why the suitability of generative AI depends on the context and purpose of a marketing activity.</li>
+<li>Distinguish between production efficiency and creative or brand effectiveness.</li>
+<li>Identify reputational and brand-authenticity risks associated with AI-generated advertising.</li>
+<li>Explain why emotionally significant or iconic brand assets may require additional human oversight and audience testing.</li>
+<li>Assess whether the potential benefits of generative AI justify its use in a particular creative campaign.</li>
+</ol>
+</div>
+</section>
+<section class="section">
+<h2>Discussion questions</h2>
+<div class="discussion"><ol>
+<li>Was the main problem the quality of the AI-generated imagery, or the decision to use generative AI for this particular type of campaign?</li>
+<li>Would the same use of generative AI have created less risk if Coca-Cola had used it for a new campaign without strong nostalgic associations?</li>
+<li>What evidence should a marketing team collect before using generative AI to reinterpret an iconic or emotionally significant brand asset?</li>
+</ol></div>
+</section>
+<footer class="sources">
+<b>Sources:</b>
+<a href="https://www.coca-colacompany.com/media-center/groundbreaking-digital-experience-and-films-fuse-holiday-heritage-with-cutting-edge-tech" rel="noopener" target="_blank">The Coca-Cola Company (2024)</a> ·
+<a href="https://www.forbes.com/sites/danidiplacido/2024/11/16/coca-colas-ai-generated-ad-controversy-explained/" rel="noopener" target="_blank">Forbes (2024)</a>
+</footer>
+</main>
+</article>
+</body>
 </html>

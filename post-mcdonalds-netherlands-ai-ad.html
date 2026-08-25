@@ -1,78 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="A practical blog archive of AI incidents in marketing, advertising, brand communications, and customer engagement." />
-        <meta name="author" content="AI Incidents in Marketing" />
-        <title>McDonald’s Netherlands and the AI Christmas ad pullback | AI incidents in marketing</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">AI Incidents in Marketing</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post-coca-cola-ai-holiday-ad.html">Featured Case</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Submit an Incident</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/post-bg.jpg')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="post-heading">
-                            <h1>McDonald’s Netherlands and the AI Christmas ad pullback</h1>
-                            <h2 class="subheading">A case in tone, timing, and emotional mismatch</h2>
-                            <span class="meta">AI marketing incident case note, December 31, 2025</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Post Content-->
-        <article class="mb-4">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>McDonald’s Netherlands became part of the wider debate on AI-generated advertising after an AI-made Christmas commercial drew criticism and was reportedly pulled. The incident is useful because the problem was not only technical. It was tonal.</p>
-                        <p>Holiday campaigns depend on warmth, familiarity, humour, and trust. When AI-generated characters or scenes feel unsettling, the audience may read the execution as careless rather than experimental. For a mass-market brand, that can quickly turn creative novelty into reputational drag.</p>
-                        <h2 class="section-heading">What went wrong</h2>
-                        <p>The campaign appears to have underestimated the gap between producing a plausible festive scene and producing a scene that feels emotionally right. AI-generated imagery can be coherent enough to pass internal review, while still feeling strange to the audience.</p>
-                        <blockquote class="blockquote">Marketing lesson: test AI creative for emotional reception, not only for speed, cost, or visual novelty.</blockquote>
-                        <h2 class="section-heading">Governance questions</h2>
-                        <p>Was there a human creative review with authority to stop the launch? Were audience reactions tested with people outside the production team? Did the brand define when AI is appropriate for festive and family-oriented messaging?</p>
-                        <p><strong>Source links:</strong> <a href="https://www.businessinsider.com/ai-advertising-controversies-flops-coca-cola-mcdonalds-meta-2025-12">Business Insider</a>, <a href="https://news.designrush.com/7-worst-ai-advertising-backfires-2025">DesignRush</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <!-- Footer-->
-        <footer class="border-top">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; AI Incidents in Marketing 2026</div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AI Incident Database · McDonald's Netherlands and the AI Christmas ad pullback</title>
+<style>
+    :root {
+      --bg: #f5f3ee;
+      --paper: #fffdf8;
+      --ink: #161616;
+      --muted: #5f5a52;
+      --line: #d8d1c6;
+      --accent: #111827;
+      --accent-soft: #ebe7df;
+      --risk: #8a2f17;
+      --risk-soft: #f3ded6;
+      --blue-soft: #eaf0f8;
+      --green-soft: #e8f1ea;
+      --shadow: 0 18px 50px rgba(0,0,0,0.08);
+      --radius: 22px;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    .site-header {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 24px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid rgba(216,209,198,0.9);
+      border-radius: 16px;
+      background: rgba(255,253,248,0.9);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .site-brand {
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-brand:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .site-section {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 42px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .case-header {
+      padding: 34px 38px 28px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(17,24,39,0.06), rgba(255,255,255,0.2)),
+        var(--paper);
+    }
+
+    .database-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .database-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--risk);
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      max-width: 840px;
+    }
+
+    .dek {
+      max-width: 850px;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.45;
+      color: #2f2b27;
+      margin: 0 0 24px;
+      font-weight: 500;
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: 1.5fr 0.7fr 1.4fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,0.65);
+    }
+
+    .meta-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .meta-card b {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .content {
+      padding: 34px 38px 40px;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: #2e2a25;
+    }
+
+    .content p {
+      margin: 0 0 18px;
+    }
+
+    .pullout {
+      margin: 28px 0;
+      padding: 22px 24px;
+      border-left: 6px solid var(--risk);
+      background: var(--risk-soft);
+      border-radius: 0 18px 18px 0;
+      font-size: 1.12rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 34px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    .number-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .number-card {
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fbfaf7;
+    }
+
+    .number-card b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .number-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+
+
+    .governance {
+      background: #f5eadf;
+      border: 1px solid #dfcdbc;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .learning {
+      background: var(--blue-soft);
+      border: 1px solid #cfd8e6;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .discussion {
+      background: var(--green-soft);
+      border: 1px solid #cbdccd;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .sources {
+      margin-top: 34px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .sources b {
+      color: var(--ink);
+    }
+
+    .template-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px dashed var(--line);
+      padding-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        width: min(100% - 18px, var(--max));
+        margin-top: 10px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .page {
+        margin: 18px auto;
+        width: min(100% - 18px, var(--max));
+      }
+
+      .case-header,
+      .content {
+        padding: 24px 20px;
+      }
+
+      .meta-strip,
+      .number-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -0.04em;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+<a class="site-brand" href="https://aimsproject.net/" rel="home">AIMS project</a>
+<div class="site-section">AI Incidents in Marketing</div>
+</header>
+<article class="page">
+<header class="case-header">
+<div class="database-label">AI Incident Database // Generative AI &amp; Emotional Fit</div>
+<h1>McDonald’s Netherlands and the AI Christmas ad pullback</h1>
+<p class="dek">McDonald’s Netherlands reportedly pulled an AI-made Christmas commercial after criticism, highlighting the risk of using generative AI when festive advertising depends on warmth, familiarity, and emotional resonance.</p>
+<div aria-label="Incident metadata" class="meta-strip">
+<div class="meta-card"><span>Incident type</span><b>Generative AI, synthetic advertising, AI-generated creative</b></div>
+<div class="meta-card"><span>Date</span><b>2025</b></div>
+<div class="meta-card"><span>Risk</span><b>Brand reputation, emotional mismatch, creative quality, consumer trust</b></div>
+</div>
+</header>
+<main class="content">
+<p class="lead">McDonald’s Netherlands became part of the wider debate on AI-generated advertising after an AI-made Christmas commercial drew criticism and was reportedly pulled. The incident is useful because the problem was not only technical. It was tonal.</p>
+<p>Holiday campaigns depend on warmth, familiarity, humor, and trust. When AI-generated characters or scenes feel unsettling, the audience may read the execution as careless rather than experimental.</p>
+<p>For a mass-market brand, that mismatch can quickly turn creative novelty into reputational drag. The case therefore illustrates how an advertisement can appear plausible enough for production while still failing to create the emotional response the campaign requires.</p>
+<section class="section">
+<h2>What went wrong</h2>
+<p>The campaign appears to have underestimated the gap between producing a plausible festive scene and producing a scene that feels emotionally right. AI-generated imagery can be coherent enough to pass internal review while still feeling strange to the audience.</p>
+<p>The key governance issue is therefore not limited to visual defects. A festive campaign can fail even when the generated imagery is technically acceptable if the tone, atmosphere, or characters do not feel appropriate for the brand and moment.</p>
+<p>This use case sends an important message to marketing specialists: AI-generated creative should be evaluated for emotional reception as well as for speed, cost, and visual novelty.</p>
+<aside class="pullout">Marketing lesson: test AI creative for emotional reception, not only for speed, cost, or visual novelty.</aside>
+</section>
+<section class="section">
+<h2>Governance questions</h2>
+<div class="governance"><ol>
+<li>Was there a human creative review with authority to stop the launch?</li>
+<li>Were audience reactions tested with people outside the production team?</li>
+<li>Did the brand define when generative AI is appropriate for festive and family-oriented messaging?</li>
+</ol></div>
+</section>
+<section class="section">
+<h2>Learning outcomes</h2>
+<div class="learning">
+<p>After discussing this case, participants should be able to:</p>
+<ol>
+<li>Explain why technically plausible AI-generated advertising can still fail because of tone or emotional mismatch.</li>
+<li>Identify reputational risks that can emerge when generative AI is used in emotionally sensitive brand communications.</li>
+<li>Distinguish between reviewing creative for visual quality and reviewing it for audience reception.</li>
+<li>Describe why human creative oversight should include the authority to stop or revise an AI-generated campaign.</li>
+<li>Assess when audience testing may be necessary before launching AI-generated advertising.</li>
+</ol>
+</div>
+</section>
+<section class="section">
+<h2>Discussion questions</h2>
+<div class="discussion"><ol>
+<li>Was the main problem the use of generative AI itself, or the way the final advertisement felt to viewers?</li>
+<li>What kind of audience testing would have been most useful before launch?</li>
+<li>Should brands apply stricter review standards when generative AI is used for festive, family-oriented, or emotionally important campaigns?</li>
+</ol></div>
+</section>
+<footer class="sources">
+<b>Sources:</b>
+<a href="https://www.businessinsider.com/ai-advertising-controversies-flops-coca-cola-mcdonalds-meta-2025-12" rel="noopener" target="_blank">Business Insider</a> ·
+<a href="https://news.designrush.com/7-worst-ai-advertising-backfires-2025" rel="noopener" target="_blank">DesignRush</a>
+</footer>
+</main>
+</article>
+</body>
 </html>
