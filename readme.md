@@ -1,1 +1,1 @@
-Repository for the RAIBL course
+Repository for the AIMS project website. 
