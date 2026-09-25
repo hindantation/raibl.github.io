@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AI Incident Database · Klarna's AI customer service course correction</title>
+<style>
+    :root {
+      --bg: #f5f3ee;
+      --paper: #fffdf8;
+      --ink: #161616;
+      --muted: #5f5a52;
+      --line: #d8d1c6;
+      --accent: #111827;
+      --accent-soft: #ebe7df;
+      --risk: #8a2f17;
+      --risk-soft: #f3ded6;
+      --blue-soft: #eaf0f8;
+      --green-soft: #e8f1ea;
+      --shadow: 0 18px 50px rgba(0,0,0,0.08);
+      --radius: 22px;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    .site-header {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 24px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid rgba(216,209,198,0.9);
+      border-radius: 16px;
+      background: rgba(255,253,248,0.9);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .site-brand {
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-brand:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .site-section {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 42px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .case-header {
+      padding: 34px 38px 28px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(17,24,39,0.06), rgba(255,255,255,0.2)),
+        var(--paper);
+    }
+
+    .database-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .database-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--risk);
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      max-width: 840px;
+    }
+
+    .dek {
+      max-width: 850px;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.45;
+      color: #2f2b27;
+      margin: 0 0 24px;
+      font-weight: 500;
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: 1.5fr 0.7fr 1.4fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,0.65);
+    }
+
+    .meta-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .meta-card b {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .content {
+      padding: 34px 38px 40px;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: #2e2a25;
+    }
+
+    .content p {
+      margin: 0 0 18px;
+    }
+
+    .pullout {
+      margin: 28px 0;
+      padding: 22px 24px;
+      border-left: 6px solid var(--risk);
+      background: var(--risk-soft);
+      border-radius: 0 18px 18px 0;
+      font-size: 1.12rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 34px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    .number-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .number-card {
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fbfaf7;
+    }
+
+    .number-card b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .number-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+
+    .governance {
+      background: #f5eadf;
+      border: 1px solid #dfcdbc;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .learning {
+      background: var(--blue-soft);
+      border: 1px solid #cfd8e6;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .discussion {
+      background: var(--green-soft);
+      border: 1px solid #cbdccd;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .sources {
+      margin-top: 34px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .sources b {
+      color: var(--ink);
+    }
+
+    .template-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px dashed var(--line);
+      padding-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        width: min(100% - 18px, var(--max));
+        margin-top: 10px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .page {
+        margin: 18px auto;
+        width: min(100% - 18px, var(--max));
+      }
+
+      .case-header,
+      .content {
+        padding: 24px 20px;
+      }
+
+      .meta-strip,
+      .number-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -0.04em;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+<a class="site-brand" href="https://aimsproject.net/" rel="home">AIMS project</a>
+<div class="site-section">AI Incidents in Marketing</div>
+</header>
+<article class="page">
+<header class="case-header">
+<div class="database-label">AI Incident Database // Workforce Automation &amp; Course Correction</div>
+<h1>Klarna's AI customer service course correction</h1>
+<p class="dek">Klarna rapidly expanded AI in customer service, highlighting major efficiency gains and reduced staffing needs. By 2025, its CEO acknowledged that the balance had shifted too far toward cost reduction and moved to strengthen human support.</p>
+<div aria-label="Incident metadata" class="meta-strip">
+<div class="meta-card"><span>Incident type</span><b>Workforce automation, AI customer service, transparent reversal</b></div>
+<div class="meta-card"><span>Date</span><b>February 2024 to mid-2025</b></div>
+<div class="meta-card"><span>Risk</span><b>Service quality, workforce trust, customer experience, public credibility</b></div>
+</div>
+</header>
+<main class="content">
+<p class="lead">In February 2024, Swedish fintech Klarna announced that its OpenAI-powered assistant was handling two-thirds of its customer service chats and doing the equivalent work of 700 full-time agents. Klarna said the assistant had reduced average resolution time from 11 minutes to under 2 minutes and was expected to contribute to a $40 million improvement in profit during 2024.</p>
+<p>The announcement formed part of a broader AI-first strategy. Klarna had frozen most non-engineering hiring and allowed employee numbers to fall through attrition while expanding the use of AI across the business. The company repeatedly presented the shift as evidence that automation could improve productivity while lowering operating costs.</p>
+<p>By May 2025, CEO Sebastian Siemiatkowski was publicly describing a trade-off that had become harder to ignore. He said cost had been too prominent a factor in how customer service was organised and that the result was lower quality. Klarna began recruiting human customer service workers again, with the goal of ensuring customers could always reach a person if they wanted one.</p>
+<section class="section">
+<h2>What went wrong</h2>
+<p>The issue was not that Klarna's AI assistant had failed to produce measurable benefits. The system handled a large share of customer interactions, shortened resolution times, and contributed to a substantial increase in operational efficiency. The problem was the way those gains were translated into an operating model.</p>
+<p>Klarna's course correction suggests that efficiency metrics alone were not sufficient to evaluate customer service quality. A model optimised strongly around cost reduction can still create problems when customers need empathy, judgement, escalation, or simply the reassurance of knowing that a human remains available.</p>
+<p>What makes this case particularly useful is that Klarna did not abandon AI. Instead, the company publicly acknowledged the trade-off and moved toward a hybrid model in which automation remained central while human support was restored as a deliberate safeguard.</p>
+<aside class="pullout">Governance lesson: successful AI automation should not be judged only by productivity and cost metrics. Organisations also need explicit service-quality thresholds, escalation paths, and a clear point at which human support must remain available.</aside>
+</section>
+<section class="section">
+<h2>Governance questions</h2>
+<div class="governance"><ol>
+<li>Which measures would tell your organisation that an AI-enabled service is becoming cheaper or faster while the quality of the customer experience is declining?</li>
+<li>Who has the authority to slow, reverse, or rebalance an automation initiative when efficiency targets are being met but service-quality concerns are emerging?</li>
+<li>Should customers always have a guaranteed path to a human when AI is used in customer-facing processes, and how should that requirement be defined?</li>
+</ol></div>
+</section>
+<section class="section">
+<h2>Learning outcomes</h2>
+<div class="learning">
+<p>After discussing this case, participants should be able to:</p>
+<ol>
+<li>Explain the difference between an AI failure and an AI over-correction, where the technology works but the balance between automation and human support is miscalculated.</li>
+<li>Identify what a credible public course correction looks like compared with a quiet reversal or a denial that anything went wrong.</li>
+<li>Describe why a guaranteed human option can function as a trust safeguard even in a highly automated service model.</li>
+<li>Assess how an organisation could detect declining service quality caused by automation before it becomes a public issue.</li>
+</ol>
+</div>
+</section>
+<section class="section">
+<h2>Discussion questions</h2>
+<div class="discussion"><ol>
+<li>If your organisation had over-automated a customer-facing process, would leadership be willing to publicly name cost as a contributing factor in the decision?</li>
+<li>What early warning signs, before customer backlash, could indicate that an AI-driven process is quietly degrading customer experience?</li>
+<li>Is AI plus a guaranteed human option a workable middle path for your organisation, or would some processes require a different balance?</li>
+</ol></div>
+</section>
+<footer class="sources">
+<b>Sources:</b>
+<a href="https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/" rel="noopener" target="_blank">Klarna (2024)</a> ·
+<a href="https://www.bloomberg.com/news/articles/2025-05-08/klarna-turns-from-ai-to-real-person-customer-service" rel="noopener" target="_blank">Bloomberg (2025)</a> ·
+<a href="https://fortune.com/2025/05/09/klarna-ai-humans-return-on-investment/" rel="noopener" target="_blank">Fortune (2025)</a> ·
+<a href="https://techcrunch.com/2025/05/19/klarnas-revenue-per-employee-soars-to-nearly-1m-thanks-to-ai-efficiency-push/" rel="noopener" target="_blank">TechCrunch (2025)</a> ·
+<a href="https://techcrunch.com/2025/06/04/klarna-ceo-says-company-will-use-humans-to-offer-vip-customer-service/" rel="noopener" target="_blank">TechCrunch (2025)</a>
+</footer>
+</main>
+</article>
+</body>
+</html>
