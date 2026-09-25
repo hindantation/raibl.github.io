@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AI Incident Database · The chocolate factory that existed only in the prompt</title>
+<style>
+    :root {
+      --bg: #f5f3ee;
+      --paper: #fffdf8;
+      --ink: #161616;
+      --muted: #5f5a52;
+      --line: #d8d1c6;
+      --accent: #111827;
+      --accent-soft: #ebe7df;
+      --risk: #8a2f17;
+      --risk-soft: #f3ded6;
+      --blue-soft: #eaf0f8;
+      --green-soft: #e8f1ea;
+      --shadow: 0 18px 50px rgba(0,0,0,0.08);
+      --radius: 22px;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    .site-header {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 24px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid rgba(216,209,198,0.9);
+      border-radius: 16px;
+      background: rgba(255,253,248,0.9);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .site-brand {
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-brand:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .site-section {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 42px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .case-header {
+      padding: 34px 38px 28px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(17,24,39,0.06), rgba(255,255,255,0.2)),
+        var(--paper);
+    }
+
+    .database-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .database-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--risk);
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      max-width: 840px;
+    }
+
+    .dek {
+      max-width: 850px;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.45;
+      color: #2f2b27;
+      margin: 0 0 24px;
+      font-weight: 500;
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: 1.5fr 0.7fr 1.4fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,0.65);
+    }
+
+    .meta-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .meta-card b {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .content {
+      padding: 34px 38px 40px;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: #2e2a25;
+    }
+
+    .content p {
+      margin: 0 0 18px;
+    }
+
+    .pullout {
+      margin: 28px 0;
+      padding: 22px 24px;
+      border-left: 6px solid var(--risk);
+      background: var(--risk-soft);
+      border-radius: 0 18px 18px 0;
+      font-size: 1.12rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 34px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+
+    .governance {
+      background: #f5eadf;
+      border: 1px solid #dfcdbc;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .learning {
+      background: var(--blue-soft);
+      border: 1px solid #cfd8e6;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .discussion {
+      background: var(--green-soft);
+      border: 1px solid #cbdccd;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .sources {
+      margin-top: 34px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .sources b {
+      color: var(--ink);
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        width: min(100% - 18px, var(--max));
+        margin-top: 10px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .page {
+        margin: 18px auto;
+        width: min(100% - 18px, var(--max));
+      }
+
+      .case-header,
+      .content {
+        padding: 24px 20px;
+      }
+
+      .meta-strip {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -0.04em;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+<a class="site-brand" href="https://aimsproject.net/" rel="home">AIMS project</a>
+<div class="site-section">AI Incidents in Marketing</div>
+</header>
+
+<article class="page">
+<header class="case-header">
+<div class="database-label">AI Incident Database // Event Marketing, AI Imagery &amp; Misrepresentation</div>
+
+<h1>The chocolate factory that existed only in the prompt</h1>
+
+<p class="dek">AI-generated images promised families an immersive Wonka-inspired fantasy world. What ticket holders found instead was a sparsely decorated warehouse and an experience that bore little resemblance to the marketing.</p>
+
+<div aria-label="Incident metadata" class="meta-strip">
+<div class="meta-card"><span>Incident type</span><b>AI-generated marketing imagery, experiential marketing, misleading advertising</b></div>
+<div class="meta-card"><span>Date</span><b>February 2024</b></div>
+<div class="meta-card"><span>Risk</span><b>Consumer deception, refunds, reputational damage, legal exposure</b></div>
+</div>
+</header>
+
+<main class="content">
+<p class="lead">In February 2024, a Willy Wonka-inspired experience opened at a warehouse in Glasgow, Scotland. The event was promoted online using vivid AI-generated images showing elaborate, candy-coloured fantasy environments and promising visitors an immersive experience filled with imaginative attractions and surprises.</p>
+
+<p>Tickets cost up to £35 per person. But when families arrived, the physical experience was very different from the images used to sell it. Visitors found a sparsely decorated warehouse with limited props and backdrops, while actors hired for the event had reportedly received scripts only shortly before opening.</p>
+
+<p>Parents complained and demanded refunds, the event was cancelled partway through its first day, and police attended the venue as tensions rose. Images comparing the promotional material with the actual event quickly spread online, turning the incident into an international example of the risks of using AI-generated imagery to advertise a real-world experience.</p>
+
+<section class="section">
+<h2>What went wrong</h2>
+
+<p>The central problem was not simply that generative AI had been used to create marketing material. It was the gap between what the generated images appeared to promise and what the organiser was realistically able to deliver.</p>
+
+<p>AI image generators can produce highly polished environments without requiring the locations, sets, materials, or production budgets that would normally be needed to photograph them. This makes them useful for visualising ideas, but it also creates a significant marketing risk when conceptual imagery is presented in a way that customers may reasonably interpret as representing the actual product or experience.</p>
+
+<p>For experiential marketing in particular, the creative used to sell the event effectively sets expectations about what customers will encounter. When the physical experience cannot plausibly match those expectations, AI-generated creative can move from imaginative promotion toward material misrepresentation.</p>
+
+<aside class="pullout">Governance lesson: AI-generated marketing imagery should not depict a level of product, environment, or experience that the organisation cannot reasonably deliver. Concept imagery should be clearly identified, and marketing teams should verify that promotional creative remains materially representative of the customer experience.</aside>
+</section>
+
+<section class="section">
+<h2>Governance questions</h2>
+<div class="governance"><ol>
+<li>Does your marketing approval process verify that AI-generated imagery is materially representative of the product, service, or experience being sold?</li>
+<li>When AI-generated visuals are used as concept imagery rather than a representation of reality, how clearly is that distinction communicated to customers?</li>
+<li>Who has responsibility for checking whether the promises implied by AI-generated marketing can actually be delivered operationally?</li>
+</ol></div>
+</section>
+
+<section class="section">
+<h2>Learning outcomes</h2>
+<div class="learning">
+<p>After discussing this case, participants should be able to:</p>
+<ol>
+<li>Explain the distinction between AI-generated marketing imagery that illustrates a concept and imagery that misrepresents what will actually be delivered.</li>
+<li>Identify why disclosure of AI-generated marketing material can matter when customers may otherwise interpret the imagery as representing the real product or experience.</li>
+<li>Describe the reputational and legal exposure that can arise when marketing materially oversells a real-world experience.</li>
+<li>Assess how an organisation can verify that AI-generated creative accurately reflects the product, service, or experience being sold.</li>
+</ol>
+</div>
+</section>
+
+<section class="section">
+<h2>Discussion questions</h2>
+<div class="discussion"><ol>
+<li>Would your organisation's marketing approval process catch AI-generated imagery that substantially oversells a product or experience before it goes live?</li>
+<li>Who should be accountable when AI-generated marketing materially misrepresents what a customer will actually receive?</li>
+<li>How should ticketed or experiential events manage the gap between AI-generated concept art and the experience that can realistically be delivered?</li>
+</ol></div>
+</section>
+
+<footer class="sources">
+<b>Sources:</b>
+<a href="https://news.sky.com/story/police-called-to-willy-wonka-inspired-experience-in-glasgow-as-families-demand-refunds-13081554" rel="noopener" target="_blank">Sky News (2024)</a> ·
+<a href="https://www.theguardian.com/uk-news/2024/feb/27/glasgow-willy-wonka-experience-slammed-as-farce-as-tickets-refunded" rel="noopener" target="_blank">The Guardian (2024)</a> ·
+<a href="https://www.theregister.com/2024/02/28/willy_wonka_event_leaves_bitter_taste_thanks_to_ai_adverts/" rel="noopener" target="_blank">The Register (2024)</a> ·
+<a href="https://arstechnica.com/information-technology/2024/02/cops-called-after-parents-get-tricked-by-ai-generated-images-of-wonka-like-event/" rel="noopener" target="_blank">Ars Technica (2024)</a>
+</footer>
+
+</main>
+</article>
+</body>
+</html>
