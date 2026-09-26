@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AI Incident Database · Taylor Swift deepfake and Le Creuset brand safety</title>
+<style>
+    :root {
+      --bg: #f5f3ee;
+      --paper: #fffdf8;
+      --ink: #161616;
+      --muted: #5f5a52;
+      --line: #d8d1c6;
+      --accent: #111827;
+      --accent-soft: #ebe7df;
+      --risk: #8a2f17;
+      --risk-soft: #f3ded6;
+      --blue-soft: #eaf0f8;
+      --green-soft: #e8f1ea;
+      --shadow: 0 18px 50px rgba(0,0,0,0.08);
+      --radius: 22px;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    .site-header {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 24px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      border: 1px solid rgba(216,209,198,0.9);
+      border-radius: 16px;
+      background: rgba(255,253,248,0.9);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .site-brand {
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-brand:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .site-section {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 32rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 42px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .case-header {
+      padding: 34px 38px 28px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(17,24,39,0.06), rgba(255,255,255,0.2)),
+        var(--paper);
+    }
+
+    .database-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .database-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--risk);
+      display: inline-block;
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      max-width: 840px;
+    }
+
+    .dek {
+      max-width: 850px;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.45;
+      color: #2f2b27;
+      margin: 0 0 24px;
+      font-weight: 500;
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: 1.5fr 0.7fr 1.4fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,0.65);
+    }
+
+    .meta-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .meta-card b {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .content {
+      padding: 34px 38px 40px;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: #2e2a25;
+    }
+
+    .content p {
+      margin: 0 0 18px;
+    }
+
+    .pullout {
+      margin: 28px 0;
+      padding: 22px 24px;
+      border-left: 6px solid var(--risk);
+      background: var(--risk-soft);
+      border-radius: 0 18px 18px 0;
+      font-size: 1.12rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 34px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+
+    .governance {
+      background: #f5eadf;
+      border: 1px solid #dfcdbc;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .learning {
+      background: var(--blue-soft);
+      border: 1px solid #cfd8e6;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .discussion {
+      background: var(--green-soft);
+      border: 1px solid #cbdccd;
+      border-radius: 18px;
+      padding: 20px 22px;
+    }
+
+    .sources {
+      margin-top: 34px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .sources b {
+      color: var(--ink);
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        width: min(100% - 18px, var(--max));
+        margin-top: 10px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .page {
+        margin: 18px auto;
+        width: min(100% - 18px, var(--max));
+      }
+
+      .case-header,
+      .content {
+        padding: 24px 20px;
+      }
+
+      .meta-strip {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -0.04em;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+<a class="site-brand" href="https://aimsproject.net/" rel="home">AIMS project</a>
+<div class="site-section">AI Incidents in Marketing</div>
+</header>
+<article class="page">
+<header class="case-header">
+<div class="database-label">AI Incident Database // Deepfakes &amp; Unauthorised Likeness</div>
+<h1>The Taylor Swift deepfake and Le Creuset's brand safety problem</h1>
+<p class="dek">When scammers used an AI-generated version of Taylor Swift to promote a fake Le Creuset giveaway, the brand became part of a fraudulent campaign it had neither created nor authorised.</p>
+<div aria-label="Incident metadata" class="meta-strip">
+<div class="meta-card"><span>Incident type</span><b>Deepfake, unauthorised likeness, fraudulent advertising</b></div>
+<div class="meta-card"><span>Date</span><b>January 2024</b></div>
+<div class="meta-card"><span>Risk</span><b>Brand reputation, fraud, consumer trust, unauthorised brand use</b></div>
+</div>
+</header>
+<main class="content">
+<p class="lead">In January 2024, fake social media advertisements appeared to show Taylor Swift promoting a giveaway for Le Creuset cookware. The ads used manipulated video and an AI-generated version of Swift's voice to tell viewers that thousands of cookware sets were being given away because of a packaging error.</p>
+<p>The promotion was not genuine. Le Creuset stated that it had no partnership with Swift for the giveaway and advised consumers to rely on the company's official channels for legitimate promotions. Some versions of the scam directed users to websites that requested personal information and a small payment described as a shipping fee.</p>
+<p>Le Creuset was not responsible for producing the content, but its brand was still drawn into the incident. Scammers used the credibility of both a well-known celebrity and a premium consumer brand to make the offer appear plausible, creating a brand-safety problem that originated entirely outside the company's own marketing operations.</p>
+
+<section class="section">
+<h2>What went wrong</h2>
+<p>This case illustrates a different category of AI marketing risk. The problem did not come from a brand choosing to deploy generative AI badly. Instead, third parties used generative AI to imitate a celebrity and falsely associate that likeness with a legitimate brand.</p>
+<p>Traditional marketing controls are usually designed around content that an organisation creates, approves, purchases, or places. Deepfake scams can bypass those controls completely. A convincing synthetic endorsement can be produced and distributed without access to the brand's systems, staff, agencies, or advertising accounts.</p>
+<p>For marketing and brand teams, this changes the scope of brand safety. Governance cannot focus only on reviewing authorised campaigns. Organisations also need monitoring, escalation, and response processes for synthetic content that misuses their name, products, logos, or partners without permission.</p>
+<aside class="pullout">Marketing lesson: brand safety monitoring should extend beyond your own advertising activity. Teams also need a response process for AI-generated content that impersonates people or uses the brand without authorisation.</aside>
+</section>
+
+<section class="section">
+<h2>Governance questions</h2>
+<div class="governance"><ol>
+<li>Does your organisation monitor for AI-generated content that uses its brand name, products, logos, executives, influencers, or celebrity partners without authorisation?</li>
+<li>If a fraudulent deepfake campaign appeared using your brand tomorrow, who would verify the incident, contact the relevant platform, communicate with customers, and coordinate the public response?</li>
+<li>Do contracts with influencers, ambassadors, and celebrity partners address unauthorised synthetic uses of their likeness or voice and define how the parties should coordinate if such an incident occurs?</li>
+</ol></div>
+</section>
+
+<section class="section">
+<h2>Learning outcomes</h2>
+<div class="learning">
+<p>After discussing this case, participants should be able to:</p>
+<ol>
+<li>Explain the difference between risks created by a brand's own use of AI and risks created by third-party AI-generated content.</li>
+<li>Identify how deepfake advertising can exploit the combined credibility of a public figure and a legitimate brand.</li>
+<li>Describe the elements of a rapid-response process for fraudulent AI-generated advertising involving a brand.</li>
+<li>Explain why brand monitoring may need to cover unauthorised synthetic content as well as authorised advertising.</li>
+<li>Assess whether existing influencer, ambassador, and celebrity-partnership governance covers deepfake and synthetic-media incidents.</li>
+</ol>
+</div>
+</section>
+
+<section class="section">
+<h2>Discussion questions</h2>
+<div class="discussion"><ol>
+<li>What responsibility does a brand have to respond when it is itself a victim of a deepfake scam?</li>
+<li>Which signals should trigger escalation: use of the brand name, paid distribution, requests for payment, customer complaints, or evidence that people have already been deceived?</li>
+<li>How should responsibility for detection and response be divided between marketing, legal, cybersecurity, customer service, and platform partners?</li>
+</ol></div>
+</section>
+
+<footer class="sources">
+<b>Sources:</b>
+<a href="https://www.cbsnews.com/news/taylor-swift-le-creuset-ai-generated-ads/" rel="noopener" target="_blank">CBS News (2024)</a> ·
+<a href="https://factcheck.afp.com/doc.afp.com.34EF34Q" rel="noopener" target="_blank">AFP Fact Check (2024)</a> ·
+<a href="https://www.latimes.com/entertainment-arts/story/2024-01-10/taylor-swift-le-creuset-ai-deepfake-scam-ads" rel="noopener" target="_blank">Los Angeles Times (2024)</a> ·
+<a href="https://www.mcafee.com/blogs/internet-security/no-taylor-swift-wont-send-you-a-free-dutch-oven-the-new-ai-cloning-scam/" rel="noopener" target="_blank">McAfee (2024)</a>
+</footer>
+</main>
+</article>
+</body>
+</html>
