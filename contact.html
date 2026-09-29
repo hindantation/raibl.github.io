@@ -27,7 +27,7 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">How to use this website</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="who-we-are.html">Who we are</a></li>
                         <!-- <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post-coca-cola-ai-holiday-ad.html">Featured Case</a></li> -->
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="https://docs.google.com/forms/d/e/1FAIpQLSdomhZXOT6bwKu_dDaf2dFeYtRHzvrpNE-9ytSQeyhA2yWDyA/viewform?usp=publish-editor" target="_blank">Submit an Incident</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Submit an Incident</a></li>
                     </ul>
                 </div>
             </div>
@@ -51,9 +51,37 @@
 
                         <p>If you know of an AI-related marketing or advertising incident that could be useful for the archive, you can submit it using the form below.</p>
                         <p>A useful submission should include the brand or platform, what AI was used for, what happened, who was affected, and links to public sources where available.</p>
-                        <p>
-                            <a class="btn btn-primary text-uppercase" href="https://docs.google.com/forms/d/e/1FAIpQLSdomhZXOT6bwKu_dDaf2dFeYtRHzvrpNE-9ytSQeyhA2yWDyA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">Submit an incident</a>
-                        </p>
+                        <form id="incident-form" action="https://formspree.io/f/xoevykzr" method="POST" aria-label="Suggest an incident">
+                            <div class="mb-4">
+                                <label class="form-label" for="incident-title">Incident or campaign name <span aria-hidden="true">*</span></label>
+                                <input class="form-control" id="incident-title" name="incident" type="text" required autocomplete="off">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label" for="incident-description">What happened? <span aria-hidden="true">*</span></label>
+                                <textarea class="form-control" id="incident-description" name="description" rows="6" required></textarea>
+                                <div class="form-text">Tell us how AI was used, what went wrong, and who was affected.</div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label" for="incident-source">Link to a public source <span aria-hidden="true">*</span></label>
+                                <input class="form-control" id="incident-source" name="source" type="url" placeholder="https://" required inputmode="url">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label" for="submitter-name">Your name (optional)</label>
+                                <input class="form-control" id="submitter-name" name="name" type="text" autocomplete="name">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label" for="submitter-email">Your email (optional)</label>
+                                <input class="form-control" id="submitter-email" name="email" type="email" autocomplete="email">
+                                <div class="form-text">Only if you would like us to contact you about this suggestion. We will not publish it.</div>
+                            </div>
+                            <div class="d-none" aria-hidden="true">
+                                <label for="incident-website">Leave this field blank</label>
+                                <input id="incident-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+                            </div>
+                            <p class="small text-muted">Suggestions are reviewed before publication. Please share public sources rather than private or sensitive information.</p>
+                            <button class="btn btn-primary text-uppercase" type="submit">Submit incident</button>
+                            <p id="form-status" class="mt-3" role="status" aria-live="polite" hidden></p>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -68,6 +96,31 @@
                 </div>
             </div>
         </footer>
+        <script>
+            const incidentForm = document.getElementById('incident-form');
+            const formStatus = document.getElementById('form-status');
+            incidentForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const button = incidentForm.querySelector('button[type="submit"]');
+                button.disabled = true;
+                formStatus.hidden = false;
+                formStatus.textContent = 'Sending your suggestion…';
+                try {
+                    const response = await fetch(incidentForm.action, {
+                        method: 'POST',
+                        body: new FormData(incidentForm),
+                        headers: { Accept: 'application/json' }
+                    });
+                    if (!response.ok) throw new Error('Submission failed');
+                    incidentForm.reset();
+                    formStatus.textContent = 'Thank you for suggesting a case. We will review it before adding it to the archive.';
+                } catch (error) {
+                    formStatus.textContent = 'Sorry, your suggestion could not be sent. Please try again.';
+                } finally {
+                    button.disabled = false;
+                }
+            });
+        </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
